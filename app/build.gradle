@@ -13,8 +13,8 @@ android {
             properties.load( inputStream )
 
             //读取文件
-            def storeFileDir = properties.getProperty('storeFile.file')
-            storeFile file( storeFileDir )
+//            def storeFileDir = properties.getProperty('storeFile.file')
+//            storeFile file( storeFileDir )
 
             //读取字段
             def key_keyAlias = properties.getProperty( 'keyAlias' )
@@ -26,12 +26,12 @@ android {
             storePassword key_storePassword
         }
     }
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.3"
     defaultConfig {
         applicationId "com.king.tv"
-        minSdkVersion 15
-        targetSdkVersion 24
+        minSdkVersion 16
+        targetSdkVersion 26
         versionCode 3
         versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -48,6 +48,12 @@ android {
             signingConfig signingConfigs.config
         }
     }
+
+    sourceSets {
+        main () {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 greendao{
@@ -58,12 +64,20 @@ greendao{
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+
+    compile "com.android.support:multidex:1.0.1"
+
+
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:cardview-v7:26.1.0'
+
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.1.1'
-    compile 'com.android.support:design:24.2.+'
-    compile 'com.android.support:cardview-v7:24.1.+'
+
+
+
     testCompile 'junit:junit:4.12'
     compile 'com.hannesdorfmann.mosby:mvp:2.0.1'
     compile 'com.hannesdorfmann.mosby:viewstate:2.0.1'
@@ -91,11 +105,11 @@ dependencies {
     compile 'com.qiniu:happy-dns:0.2.+'
     //optional, help to generate the final applicatio
 
-    //    provided('com.tencent.tinker:tinker-android-anno:1.7.7')
+    provided('com.tencent.tinker:tinker-android-anno:1.7.7')
 
     //tinker's main Android lib
 
-    //    compile 'com.tencent.tinker:tinker-android-lib:1.7.7'
+    compile 'com.tencent.tinker:tinker-android-lib:1.7.7'
     // 多dex配置
     compile 'com.android.support:multidex:1.0.1'
     //sdk

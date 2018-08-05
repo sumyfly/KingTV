@@ -36,7 +36,7 @@ public class App extends Application {
         super.attachBaseContext(base);
 
         MultiDex.install(base);
-        Beta.installTinker();
+//        Beta.installTinker(); //TODO: tinker broken build
     }
 
     @Override
